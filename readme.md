@@ -6,14 +6,14 @@ Til alle opgaverne er det vigtigt i gør brug af korrekte status koder, dvs. hvi
 
 ## Opgave 1: Implementer Asynkron Produkthentning
 
-1. I `server/routes/product.js`, opret en ny route `/getProducts` der returnerer produkterne fra `server/db/products.js`.
+1. I `server/routes/product.js`, opret en ny route `/getProducts` der returnerer produkterne fra `server/db/products.js`.  Denne route skal også have autentificering. 
 2. Implementer autentificering på denne route, så kun indloggede brugere kan tilgå den.
 3. I `client/scripts/menu.js`, erstat det statiske `productList` array med en asynkron funktion der henter produkterne fra den nye `/getProducts` route ved hjælp af `fetch` og `async/await`.
 4. Opdater `displayProducts()` funktionen til at vente på den asynkrone produkthentning før visning.
 
 ## Opgave 2: Implementer Favorit-funktionalitet
 
-1. I `server/routes/product.js`, udvikel `/toggleFavorite` der tager imod et produktnavn og et brugernavn.
+1. I `server/routes/product.js`, udvikel `/toggleFavorite` der tager imod et produktnavn og et brugernavn.  Denne route skal også have autentificering. 
 2. Implementer logikken i `toggleFavorite` der gemmer/fjerner produktet som favorit for den givne bruger (du kan gemme dette i et objekt eller array på serversiden for nu).
 3. I `client/scripts/menu.js`, opdater `toggleLike` funktionen til at sende en request til `/toggleFavorite` når et produkt likes/unlikes.
 
