@@ -2,7 +2,7 @@
 
 I denne opgave skal vi arbejde med at integrere `async await`, `fetch` og `cookies` i vores eksisterende kodebase.
 
-Til alle opgaverne er det vigtigt i gør brug af korrekte status koder, dvs. hvis autentificeringen fejler, vil det være oplagt at gøre brug af en 401 fejlkode. Alle fejlkoder og deres betydning kan ses her [Status koder](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+Til alle opgaverne er det vigtigt i gør brug af korrekte status koder, dvs. hvis autentificeringen fejler, vil det være oplagt at gøre brug af en 401 fejlkode. Status koder og deres betydning kan ses her [Status koder](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
 ## Opgave 1: Implementer Asynkron Produkthentning
 
