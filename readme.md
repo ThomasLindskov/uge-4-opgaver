@@ -22,6 +22,3 @@ Til alle opgaverne er det vigtigt i gør brug af korrekte status koder, dvs. hvi
 1. I `server/routes/product.js`, udvikel `/getFavorites/:userId` til at returnere brugerens favorit-produkter. Brug cookies til at gemme favoriterne.  Denne route skal også have autentificering. 
 2. I `client/scripts/menu.js`, opret en funktion `loadFavorites()` der henter brugerens favoritter ved page load.
 3. Opdater `displayProducts()` funktionen til at markere favorit-produkter baseret på de hentede data.
-
-## Bonus opgave implementer loading icon indtil produkterne er loadet
-Brug gerne Robort (ChatGPT) til at lave et icon. 
