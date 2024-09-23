@@ -74,7 +74,6 @@ customerRoutes.post("/login", (req, res) => {
 // Beskyttet
 customerRoutes.get("/protected", (req, res) => {
   const authCookie = req.cookies.userAuth;
-  console.log(authCookie);
 
   if (!authCookie) {
     return res.status(401).send("Ingen authentication cookie.");

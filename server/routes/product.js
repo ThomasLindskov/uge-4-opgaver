@@ -42,7 +42,6 @@ productRoutes.get('/getProducts', authenticateUser, async (req, res) => {
 productRoutes.get('/getFavorites/:userName', (req, res) => {
     const userName = req.params.userName;
     const favorites = userFavorites[userName] || [];
-    console.log(userFavorites)
 
     res.status(200).json(favorites);
 });
@@ -61,8 +60,6 @@ productRoutes.post('/toggleFavorite', authenticateUser, (req, res) => {
     } else {
         userFavorites[username].push(productName); 
     }
-
-    console.log(userFavorites[username])
 
     res.status(200).json({ favorites: userFavorites[username] });
 });
