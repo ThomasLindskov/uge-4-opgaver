@@ -1,9 +1,23 @@
 const products = document.getElementById("products");
 const input = document.getElementById("input");
 
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
+}
+let username = getCookie("userAuth");
+if (!username) {
+  location.href = "/";
+}
+
+displayProducts()
+
+
+
 const imgRoutePrefix = "../img/"
 
-const productList = [
+let productList = [
   {
     productName: "Orange Juice",
     imgsrc: "orange_juice.jpg"
@@ -32,7 +46,39 @@ const productList = [
 
 let likedProducts = new Array(productList.length).fill(false);
 
-function displayProducts() {
+async function fetchProducts() {
+  try {
+    const response = await fetch('http://localhost:3000/product/getProducts');
+    if (!response.ok) {
+      throw new Error('Failed to fetch products');
+    }
+    productList = await response.json(); 
+    return productList;
+  } catch (error) {
+    console.error("Error:", error);
+    return [];
+  }
+}
+
+async function loadFavorites() {
+  try {
+    const response = await fetch(`http://localhost:3000/product/getFavorites/${username}`); 
+    if (!response.ok) {
+      throw new Error('Failed to load favorites');
+    }
+    const favorites = await response.json();
+    return favorites;
+  } catch (error) {
+    console.error("Error:", error);
+    return [];
+  }
+}
+
+
+
+async function displayProducts() {
+  await fetchProducts();  
+  likedProducts = await loadFavorites(); //
   const productContainer = document.getElementById("product-list");
 
   productContainer.innerHTML = ""; 
@@ -54,7 +100,7 @@ function displayProducts() {
       heartButton.classList.add("liked");
     }
 
-    heartButton.addEventListener("click", () => toggleLike(index, heartButton)); 
+    heartButton.addEventListener("click", () => toggleLike(product.productName, heartButton)); 
 
 
 
@@ -68,25 +114,32 @@ function displayProducts() {
   });
 }
 
-function toggleLike(index, heartButton) {
-  likedProducts[index] = !likedProducts[index];
+// Function to toggle like status
+async function toggleLike(productName, heartButton) {
+  try {
+    const response = await fetch('http://localhost:3000/product/toggleFavorite', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, productName }) 
+    });
 
-  if (likedProducts[index]) {
-    heartButton.classList.add("liked"); 
-  } else {
-    heartButton.classList.remove("liked"); 
+    if (!response.ok) {
+      throw new Error('Failed to toggle favorite');
+    }
+
+    const result = await response.json();
+
+    if (result.favorites.includes(productName)) {
+      heartButton.classList.add("liked");
+    } else {
+      heartButton.classList.remove("liked");
+    }
+
+  } catch (error) {
+    console.error("Error:", error);
   }
 }
 
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(";").shift();
-}
 
-displayProducts()
-
-let username = getCookie("userAuth");
-if (!username) {
-  location.href = "/";
-}

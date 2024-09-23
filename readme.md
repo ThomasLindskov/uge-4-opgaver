@@ -13,12 +13,15 @@ Til alle opgaverne er det vigtigt i gør brug af korrekte status koder, dvs. hvi
 
 ## Opgave 2: Implementer Favorit-funktionalitet
 
-1. I `server/routes/product.js`, udvikel `/toggleFavorite` der tager imod et produktnavn og et brugernavn.
+1. I `server/routes/product.js`, udvikel `/toggleFavorite` der tager imod et produktnavn og et brugernavn. Denne route skal også have autentificering. 
 2. Implementer logikken i `toggleFavorite` der gemmer/fjerner produktet som favorit for den givne bruger (du kan gemme dette i et objekt eller array på serversiden for nu).
 3. I `client/scripts/menu.js`, opdater `toggleLike` funktionen til at sende en request til `/toggleFavorite` når et produkt likes/unlikes.
 
 ## Opgave 3: Persistente Favoritter med Cookies
 
-1. I `server/routes/product.js`, udvikel `/getFavorites/:userId` til at returnere brugerens favorit-produkter. Brug cookies til at gemme favoriterne. 
+1. I `server/routes/product.js`, udvikel `/getFavorites/:userId` til at returnere brugerens favorit-produkter. Brug cookies til at gemme favoriterne.  Denne route skal også have autentificering. 
 2. I `client/scripts/menu.js`, opret en funktion `loadFavorites()` der henter brugerens favoritter ved page load.
 3. Opdater `displayProducts()` funktionen til at markere favorit-produkter baseret på de hentede data.
+
+## Bonus opgave implementer loading icon indtil produkterne er loadet
+Brug gerne Robort (ChatGPT) til at lave et icon. 
