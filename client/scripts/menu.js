@@ -70,13 +70,9 @@ function displayProducts() {
 
 function toggleLike(index, heartButton) {
   likedProducts[index] = !likedProducts[index];
-
-  if (likedProducts[index]) {
-    heartButton.classList.add("liked"); 
-  } else {
-    heartButton.classList.remove("liked"); 
-  }
+  heartButton.classList.toggle("liked", likedProducts[index]);
 }
+
 
 function getCookie(name) {
   const value = `; ${document.cookie}`;
